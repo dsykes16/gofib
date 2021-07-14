@@ -4,32 +4,33 @@ version: 2.1
 jobs:
   build:
     working_directory: ~/repo
-    docker:
-      - image: circleci/golang:1.16.5
+    machine:
+      image: ubuntu-2004:202104-01
     steps:
       - run:
-          name: Install Docker
+          name: Install Go
           command: |
-            sudo apt update
-            sudo apt install apt-transport-https ca-certificates curl gnupg2 software-properties-common
-            curl -fsSL https://download.docker.com/linux/debian/gpg | sudo apt-key add -
-            sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/debian $(lsb_release -cs) stable"
-            sudo apt update
-            apt-cache policy docker-ce
-            sudo apt install docker-ce
-            sudo usermod -aG docker circleci
-            sudo su - circleci
+            GO_VERSION=1.16.6
+            sudo apt-get update && sudo apt-get install -y --no-install-recommends g++ libc6-dev
+            sudo rm -rf /var/lib/apt/lists/*
+            curl -sSL "https://golang.org/dl/go${GO_VERSION}.linux-amd64.tar.gz" | sudo tar -xz -C /usr/local/
+            mkdir -p /home/circleci/go/bin
+            curl -sSL "https://github.com/gotestyourself/gotestsum/releases/download/v1.6.4/gotestsum_1.6.4_linux_amd64.tar.gz" | sudo tar -xz -C /usr/local/bin gotestsum
+            GOPATH=/home/circleci/go
+            PATH=$GOPATH/bin:/usr/local/go/bin:$PATH
       - checkout
-      - restore_cache:
-          keys:
-            - go-mod-v4-{{ checksum "go.sum" }}
+      # Cache is broken due to previous usage of docker instead of machine executor
+      # TODO: Restore this after change is made to go.sum and cache is updated in CircleCI
+      # - restore_cache:
+      #     keys:
+      #       - go-mod-v4-{{ checksum "go.sum" }}
       - run:
           name: Install Dependencies
           command: go mod download
       - save_cache:
           key: go-mod-v4-{{ checksum "go.sum" }}
           paths:
-            - "/go/pkg/mod"
+            - "home/circleci/go/pkg/mod"
       - run:
           name: Run tests
           command: |
