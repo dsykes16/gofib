@@ -1,4 +1,4 @@
-package rpcfib
+package gofib
 
 type Cache interface {
 	Add(index, result uint) (err error)

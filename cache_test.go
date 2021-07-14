@@ -1,4 +1,4 @@
-package rpcfib_test
+package gofib_test
 
 import (
 	. "github.com/onsi/ginkgo"

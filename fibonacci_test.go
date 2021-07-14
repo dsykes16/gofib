@@ -1,11 +1,11 @@
-package rpcfib_test
+package gofib_test
 
 import (
 	. "github.com/onsi/ginkgo"
 	. "github.com/onsi/ginkgo/extensions/table"
 	. "github.com/onsi/gomega"
 
-	. "github.com/dsykes16/rpcfib"
+	. "github.com/dsykes16/gofib"
 )
 
 var _ = Describe("Fibonacci", func() {

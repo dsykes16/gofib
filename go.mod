@@ -1,4 +1,4 @@
-module github.com/dsykes16/rpcfib
+module github.com/dsykes16/gofib
 
 go 1.16
 

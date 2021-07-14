@@ -1,4 +1,4 @@
-package rpcfib_test
+package gofib_test
 
 import (
 	"testing"
@@ -9,5 +9,5 @@ import (
 
 func TestRpcfib(t *testing.T) {
 	RegisterFailHandler(Fail)
-	RunSpecs(t, "Rpcfib Suite")
+	RunSpecs(t, "GoFib Suite")
 }

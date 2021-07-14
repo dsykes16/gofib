@@ -1,4 +1,4 @@
-package rpcfib
+package gofib
 
 type Fibonacci struct{}
 
