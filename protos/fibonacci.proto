@@ -1,0 +1,36 @@
+syntax = "proto3";
+
+package fibonacci;
+option go_package="github.com/dsykes16/gofib/server";
+
+service Fibonacci {
+    rpc GetFib(FibonacciRequest) returns (FibonacciResult) {}
+    rpc GetFibRange(FibonacciRangeRequest) returns (FibonacciRangeResult) {}
+    rpc GetCacheSize(Empty) returns (Size) {}
+    rpc GetCacheSizeForRange(FibonacciRangeRequest) returns (Size) {}
+    rpc ClearCache(Empty) returns (Empty) {}
+}
+
+message Empty {}
+
+message Size {
+    uint64 size = 1;
+}
+
+message FibonacciRequest {
+    uint64 index = 1;
+}
+
+message FibonacciResult {
+    uint64 index = 1;
+    string result = 2;
+}
+
+message FibonacciRangeRequest {
+    uint64 start = 1;
+    uint64 end = 2;
+}
+
+message FibonacciRangeResult {
+    repeated FibonacciResult result = 1;
+}
