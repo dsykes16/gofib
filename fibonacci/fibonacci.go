@@ -4,11 +4,17 @@ import (
 	"math/big"
 
 	"github.com/dsykes16/gofib/cache"
-	"github.com/dsykes16/gofib/cache/local_cache"
 )
 
 type Fibonacci struct {
 	Cache cache.Cache
+}
+
+func New(c cache.Cache) (fibonacci *Fibonacci) {
+	fibonacci = &Fibonacci{
+		Cache: c,
+	}
+	return
 }
 
 func (f Fibonacci) Fib(index uint64) (result *big.Int) {
@@ -30,8 +36,4 @@ func (f Fibonacci) Fib(index uint64) (result *big.Int) {
 	}
 
 	return
-}
-
-func LocalMemoizedFibbonacci() (fibonacci *Fibonacci) {
-	return &Fibonacci{Cache: local_cache.New()}
 }

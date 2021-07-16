@@ -7,6 +7,7 @@ import (
 	. "github.com/onsi/ginkgo/extensions/table"
 	. "github.com/onsi/gomega"
 
+	"github.com/dsykes16/gofib/cache/local_cache"
 	"github.com/dsykes16/gofib/fibonacci"
 	pb "github.com/dsykes16/gofib/protos"
 	"github.com/dsykes16/gofib/server"
@@ -16,7 +17,7 @@ import (
 
 var _ = Describe("gRPC Server Tests", func() {
 	ctx := context.Background()
-	fib := fibonacci.LocalMemoizedFibbonacci()
+	fib := fibonacci.New(local_cache.New())
 	s := server.New(fib)
 	DescribeTable("GetFib",
 		func(request *pb.FibonacciRequest, expectedResult *pb.FibonacciResult, expectError bool) {

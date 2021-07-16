@@ -7,6 +7,7 @@ import (
 	. "github.com/onsi/ginkgo/extensions/table"
 	. "github.com/onsi/gomega"
 
+	"github.com/dsykes16/gofib/cache/local_cache"
 	. "github.com/dsykes16/gofib/fibonacci"
 )
 
@@ -32,7 +33,7 @@ var _ = Describe("Fibonacci", func() {
 })
 
 var _ = Describe("LocalMemoizedFibonacci", func() {
-	fibonacci := LocalMemoizedFibbonacci()
+	fibonacci := New(local_cache.New())
 
 	DescribeTable("Test locally cached Fib function to 10th Fibonacci number",
 		func(index uint64, expected *big.Int) {
