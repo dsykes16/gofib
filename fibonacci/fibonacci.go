@@ -1,4 +1,4 @@
-package gofib
+package fibonacci
 
 import (
 	"math/big"

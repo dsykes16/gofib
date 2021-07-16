@@ -4,15 +4,15 @@ import (
 	"context"
 	"errors"
 
-	"github.com/dsykes16/gofib"
+	"github.com/dsykes16/gofib/fibonacci"
 	pb "github.com/dsykes16/gofib/protos"
 )
 
 type server struct {
-	fib *gofib.Fibonacci
+	fib *fibonacci.Fibonacci
 }
 
-func New(fibonacci *gofib.Fibonacci) *server {
+func New(fibonacci *fibonacci.Fibonacci) *server {
 	return &server{fib: fibonacci}
 }
 

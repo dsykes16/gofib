@@ -1,4 +1,4 @@
-package gofib_test
+package fibonacci_test
 
 import (
 	"math/big"
@@ -7,7 +7,7 @@ import (
 	. "github.com/onsi/ginkgo/extensions/table"
 	. "github.com/onsi/gomega"
 
-	. "github.com/dsykes16/gofib"
+	. "github.com/dsykes16/gofib/fibonacci"
 )
 
 var _ = Describe("Fibonacci", func() {

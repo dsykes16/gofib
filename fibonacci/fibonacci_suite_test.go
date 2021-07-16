@@ -1,4 +1,4 @@
-package gofib_test
+package fibonacci_test
 
 import (
 	"testing"
@@ -9,5 +9,5 @@ import (
 
 func TestRpcfib(t *testing.T) {
 	RegisterFailHandler(Fail)
-	RunSpecs(t, "GoFib Suite")
+	RunSpecs(t, "Fibonacci Suite")
 }
