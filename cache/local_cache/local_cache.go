@@ -10,7 +10,7 @@ type LocalCache struct {
 	values map[uint64]*big.Int
 }
 
-func NewLocalCache() cache.Cache {
+func New() cache.Cache {
 	return &LocalCache{values: makeCache()}
 }
 

@@ -8,5 +8,5 @@ import (
 )
 
 var _ = Describe("Local Cache Tests", func() {
-	SharedCacheTests(local_cache.NewLocalCache)
+	SharedCacheTests(local_cache.New)
 })

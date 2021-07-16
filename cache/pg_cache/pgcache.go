@@ -42,7 +42,7 @@ type PgCache struct {
 	table string
 }
 
-func NewPgCache(db *sql.DB, table string) cache.Cache {
+func New(db *sql.DB, table string) cache.Cache {
 	sqlStatement := `
 	CREATE TABLE IF NOT EXISTS bigfib(
 		index integer primary key,
