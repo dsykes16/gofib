@@ -38,11 +38,10 @@ func (conn *PgConnection) ConnectionString() string {
 }
 
 type PgCache struct {
-	db    *sql.DB
-	table string
+	db *sql.DB
 }
 
-func New(db *sql.DB, table string) cache.Cache {
+func New(db *sql.DB) cache.Cache {
 	sqlStatement := `
 	CREATE TABLE IF NOT EXISTS bigfib(
 		index integer primary key,
@@ -50,9 +49,9 @@ func New(db *sql.DB, table string) cache.Cache {
 	`
 	_, err := db.Exec(sqlStatement)
 	if err != nil {
-		log.Fatalf("could not create postgres table(%s): %s", table, err)
+		log.Fatalf("could not create postgres table(bigfib): %s", err)
 	}
-	return &PgCache{db: db, table: table}
+	return &PgCache{db: db}
 }
 
 func (c *PgCache) Add(index uint64, result *big.Int) (err error) {

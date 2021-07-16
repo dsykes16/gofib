@@ -27,7 +27,7 @@ var _ = Describe("Postgres Cache Tests", func() {
 	newConfiguredPgCache := func() cache.Cache {
 		container, db := startPostgres(dockerPool)
 		container.Expire(uint(30))
-		return pg_cache.New(db, "bigfib")
+		return pg_cache.New(db)
 	}
 
 	SharedCacheTests(newConfiguredPgCache)
